@@ -36,19 +36,32 @@ function generateTable(data){
   		console.log(data[index].image_urls);
 
   		var titleCell = document.createElement("TD");
+      titleCell.classList.add("title-cell");
   		var urlCell = document.createElement("TD");
+      urlCell.classList.add("url-cell");
+      urlCell.setAttribute("href", data[index].url);
+
+
   		var priceCell = document.createElement("TD");
+      priceCell.classList.add("price-cell");
   		var imageCell = document.createElement("TD");
+      imageCell.classList.add("image-cell");
+
+
+      var image = document.createElement("IMG");
+      image.setAttribute("src", data[index].image_urls[0]);
+      image.setAttribute("class", "listing-image");
+
 
   		var titleText = document.createTextNode(data[index].title);
   		var urlText = document.createTextNode(data[index].url);
   		var priceText = document.createTextNode(data[index].price);
-  		var imageText = document.createTextNode(data[index].image_urls[0]);
+  		
 
   		titleCell.appendChild(titleText);
   		urlCell.appendChild(urlText);
   		priceCell.appendChild(priceText);
-  		imageCell.appendChild(imageText);
+  		imageCell.appendChild(image);
 
   		document.getElementById("listingRow" + index).appendChild(titleCell);
   		document.getElementById("listingRow" + index).appendChild(urlCell);

@@ -7,11 +7,59 @@
 </head>
 <body>
 
-	<style>
-		body{
-			text-align:center;
-		}
-	</style>
+	 <style>
+    
+
+        /* Regular Weight */
+    @font-face {
+        font-family: Merriweather;
+        src: url("fonts/Merriweather-Regular.ttf");
+    }
+
+    /* Bold (600) Weight */
+    @font-face {
+        font-family: Merriweather;
+        src: url("fonts/Merriweather-Bold.ttf");
+        font-weight: bold;
+    }
+
+    /* Light Weight */
+    @font-face {
+        font-family: Merriweather;
+        src: url("fonts/Merriweather-Light.ttf");
+        font-weight: lighter;
+    }
+
+
+
+    body{
+      background-color: #23272a;
+      color: white;
+      text-align:center;
+      font-family: Merriweather;
+    }
+
+    td {
+      padding:20px;
+      font-weight: bold;
+    }
+
+    table {
+      width: 100%;
+
+    }
+
+    .listing-image{
+      width:100px;
+      height:100px;
+      object-fit: cover;
+    }
+
+    .title-cell{
+      width: 20%;
+    }
+
+  </style>
 
     <h1>Craiglist Scraper</h1>
     <p>
