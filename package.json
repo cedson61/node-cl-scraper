@@ -1,0 +1,23 @@
+{
+  "name": "node-cl-scraper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "program.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cedson61/node-cl-scraper.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cedson61/node-cl-scraper/issues"
+  },
+  "homepage": "https://github.com/cedson61/node-cl-scraper#readme",
+  "devDependencies": {
+    "electron": "^12.0.4"
+  }
+}
