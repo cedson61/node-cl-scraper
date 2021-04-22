@@ -1,7 +1,8 @@
 // In renderer process (web page).
 const { ipcRenderer } = require('electron')
 
-
+var loadingText = document.getElementById('loadingText');
+var searchGoing = false;
 //generate table on page
 
 function generateTable(data){
@@ -48,9 +49,21 @@ function generateTable(data){
       imageCell.classList.add("image-cell");
 
 
+
+
       var image = document.createElement("IMG");
       image.setAttribute("src", data[index].image_urls[0]);
       image.setAttribute("class", "listing-image");
+
+      var image1 = document.createElement("IMG");
+      image1.setAttribute("src", data[index].image_urls[1]);
+      image1.setAttribute("class", "listing-image");
+
+      var image2 = document.createElement("IMG");
+      image2.setAttribute("src", data[index].image_urls[2]);
+      image2.setAttribute("class", "listing-image");
+
+
 
 
   		var titleText = document.createTextNode(data[index].title);
@@ -62,6 +75,8 @@ function generateTable(data){
   		urlCell.appendChild(urlText);
   		priceCell.appendChild(priceText);
   		imageCell.appendChild(image);
+      imageCell.appendChild(image1);
+      imageCell.appendChild(image2);
 
   		document.getElementById("listingRow" + index).appendChild(titleCell);
   		document.getElementById("listingRow" + index).appendChild(urlCell);
@@ -82,8 +97,10 @@ function generateTable(data){
 
 ipcRenderer.on('asynchronous-reply', (event, arg) => {
   console.log("recieved listings from backend...");
+  loadingText.innerHTML = "";
   console.log(arg);
   generateTable(arg);
+  searchGoing = false;
   
   
 })
@@ -92,10 +109,20 @@ ipcRenderer.on('asynchronous-reply', (event, arg) => {
 
 var beginCrawl = document.getElementById('initiate'); 
 
+
+
 beginCrawl.addEventListener('click', (event) => {
-    var queryurlfield = document.getElementById("queryurlfield").value;
-    console.log("button clicked...");
-    ipcRenderer.send('asynchronous-message', queryurlfield);
+
+  if(!searchGoing){
+      searchGoing = true;
+      loadingText.innerHTML += "loading... maybe go grab a coffee";
+      var queryurlfield = document.getElementById("queryurlfield").value;
+      console.log("button clicked...");
+      ipcRenderer.send('asynchronous-message', queryurlfield);
+  }
+    
+
+
 
 });
 

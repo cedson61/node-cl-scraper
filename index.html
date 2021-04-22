@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>Craigslist Scraper v0.1</title>
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    
+
 </head>
 <body>
 
@@ -53,22 +55,58 @@
       width:100px;
       height:100px;
       object-fit: cover;
+      float: left;
+      padding: 5px;
     }
 
     .title-cell{
       width: 20%;
     }
 
+    .url-cell{
+      width: 25%;
+    }
+
+    .price-cell{
+      width: 15%;
+    }
+
+    .image-cell{
+      width: 40%;
+    }
+
+    .queryfield{
+      padding:20px;
+      width:600px;
+      background-color: #2b2b2b;
+      color: #fff;
+      font-family: Merriweather;
+
+    }
+
+    .queryfieldwrapper{
+      padding:10px;
+    }
+
+    
+
   </style>
 
     <h1>Craiglist Scraper</h1>
+    
+        <h3 style="padding-left: 25%; padding-right: 25%;">
+            To find your query string, make a search on craigslist and copy everything after the '.org' (including the slash) and paste below:
+        </h3>
+    
     <p>
         Enter a Query URL Below:
     </p>
     
-  		<label for="queryurlfield">Query URL:</label><br>
-  		<input type="text" value="/search/cto?query=tesla+model+3&purveyor-input=owner&min_price=25000&max_price=40000&min_auto_miles=1000&max_auto_miles=45000&auto_title_status=1" id="queryurlfield" name="queryurlfield"><br>
+  		<label for="queryurlfield"><i>Query URL:</i></label><br>
+      <div class="queryfieldwrapper"><input class="queryfield" type="text" value="/search/cto?query=tesla+model+3&purveyor-input=owner&hasPic=1&min_price=25000&max_price=40000&min_auto_miles=1000&max_auto_miles=45000&auto_title_status=1" id="queryurlfield" name="queryurlfield"></div>
+  		<br>
   		<button id="initiate" type="submit">Go!</button>
+      <div style="padding:10px" id="loadingText"></div>
 	    
 
 

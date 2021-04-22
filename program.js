@@ -5,7 +5,7 @@ const { ipcMain } = require('electron')
 
 function createWindow () {
   const win = new BrowserWindow({
-    width: 1200,
+    width: 1400,
     height: 800,
     webPreferences: {
       nodeIntegration: true,
@@ -515,7 +515,14 @@ async function getListingData(data, url) {
     var imageurls = [];
 
     for (count in imagesfull) {
-        imageurls.push(imagesfull[count].attrs.src)
+
+        if (count > 0){
+            var currentImageURL = imagesfull[count].attrs.src;
+
+            currentImageURL = currentImageURL.slice(0, -10);
+            imageurls.push(currentImageURL + "600x450.jpg")
+        } 
+        
 
     }
     var curr_listing = new Listing(url, title, price, imageurls);
@@ -528,9 +535,9 @@ async function getListingData(data, url) {
 //this one is kind of the master function of this bit... based on a passed query string it will go out and get all the listings, and then call findListingInfo for the full list
 async function findListings(query) {
 
-    for (let index = 0; index < urlContainer1.length; index++) {
+    for (let index = 0; index < urlContainer.length; index++) {
 
-        const currentURL = urlContainer1[index] + query;
+        const currentURL = urlContainer[index] + query;
 
         try {
 
