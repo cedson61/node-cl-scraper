@@ -3,8 +3,11 @@ const path = require('path')
 //testing...
 const { ipcMain } = require('electron')
 
+
+var win = null;
+
 function createWindow () {
-  const win = new BrowserWindow({
+  win = new BrowserWindow({
     width: 1400,
     height: 800,
     webPreferences: {
@@ -497,6 +500,8 @@ async function findListingHREF(data) {
     for (res in found) {
         const currentHref = found[res].attrs.href;
         console.log('FOUND listing URL: ' + currentHref);
+        win.webContents.send('systemOutput', 'FOUND URL: ' + currentHref);
+
         listings.indexOf(currentHref) === -1 ? listings.push(currentHref) : console.log("This listing is already in the array.");
 
     }
@@ -526,7 +531,8 @@ async function getListingData(data, url) {
 
     }
     var curr_listing = new Listing(url, title, price, imageurls);
-    console.log("logging listing...")
+    console.log("logging listing...");
+    win.webContents.send('systemOutput', curr_listing);
     listings_info.push(curr_listing);
 }
 
@@ -535,9 +541,9 @@ async function getListingData(data, url) {
 //this one is kind of the master function of this bit... based on a passed query string it will go out and get all the listings, and then call findListingInfo for the full list
 async function findListings(query) {
 
-    for (let index = 0; index < urlContainer.length; index++) {
+    for (let index = 0; index < urlContainer1.length; index++) {
 
-        const currentURL = urlContainer[index] + query;
+        const currentURL = urlContainer1[index] + query;
 
         try {
 

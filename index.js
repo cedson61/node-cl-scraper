@@ -105,6 +105,10 @@ ipcRenderer.on('asynchronous-reply', (event, arg) => {
   
 })
 
+ipcRenderer.on('systemOutput', (event, arg) => {
+  console.log(arg);
+  
+})
 
 
 var beginCrawl = document.getElementById('initiate'); 
